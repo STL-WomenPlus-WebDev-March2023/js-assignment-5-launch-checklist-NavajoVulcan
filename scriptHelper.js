@@ -20,27 +20,24 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
 
-       if (testInput === 0) {
+       if (testInput === "") {
           return "Empty"
 
        } else if (isNaN(testInput) === true) {
         return "Not a Number"
-       } else if (isNan(testInput) === false) {
+       } else if (isNaN(testInput) === false) {
         return "Is a Number"
        }
+
     };
 
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 let launchStatus = document.getElementById("launchStatus");
 let faultyItems = document.getElementById("faultyItems");
-//Pilot-----
-let pilotStatus = document.getElementById("#pilotStatus");
-let copilotStatus = document.getElementById("copilotStatus");
-let fuel = document.getElementById("fuelStatus");
-let cargo = document.getElementById("cargoStatus");
 
-   if (validateInput(pilot) === "Empty" || (validateInput(copilot) === "Empty") || ( validateInput(fuel) === "Empty") || (validateInput(cargo) === "Empty")) {
+
+   if (validateInput(pilot) === "Empty" || (validateInput(copilot) === "Empty") || ( validateInput(fuelLevel) === "Empty") || (validateInput(cargoLevel) === "Empty")) {
     alert("All fields are required.");
 
 } else if (validateInput(pilot) === "Is a Number") {
@@ -49,10 +46,10 @@ let cargo = document.getElementById("cargoStatus");
 } else if (validateInput(copilot) === "Is a Number") {
     alert("Invalid Input for Copilot Name");
 
-} else if (validateInput(fuel) === "Not a Number") {
+} else if (validateInput(fuelLevel) === "Not a Number") {
     alert("Invalid Input for Fuel Level");
 
-} else if (validateInput(cargo) === "Not a Number") {
+} else if (validateInput(cargoLevel) === "Not a Number") {
     alert("Invalid Input for Cargo Level");
 
 } else {
@@ -78,39 +75,39 @@ let cargo = document.getElementById("cargoStatus");
 
 //
 
-if(fuel < 10000 && cargo > 10000) {
+if(fuelLevel < 10000 && cargoLevel > 10000) {
     faultyItems.style.visibility = "visible";
     fuelStatus.innerHTML = "Fuel level too low for launch";
     cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-    h2.innerHTML = "Shuttle Not Ready for Launch";
-    h2.style.color = "#C7254E";
+    launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+    launchStatus.style.color = "#C7254E";
 
     };
 
 
-if(fuel < 10000 && cargo < 10000) {
+if(fuelLevel < 10000 && cargoLevel < 10000) {
 faultyItems.style.visibility = "visible";
 fuelStatus.innerHTML = "Fuel level too low for launch";
 cargoStatus.innerHTML = "Cargo mass low enough for launch";
-h2.innerHTML = "Shuttle Not Ready for Launch";
-h2.style.color = "#C7254E";
+launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+launchStatus.style.color = "#C7254E";
 
 };
 
 
-if (cargo > 10000 && fuel >= 10000) {
+if (cargoLevel > 10000 && fuelLevel >= 10000) {
 faultyItems.style.visibility = "visible";
 fuelStatus.innerHTML = "Fuel level high enough for launch";
 cargoStatus.innerHTML = "Cargo mass too heavy for launch";
-h2.innerHTML = "Shuttle Not Ready for Launch";
-h2.style.color = "#C7254E";
+launchStatus.innerHTML = "Shuttle Not Ready for Launch";
+launchStatus.style.color = "#C7254E";
 
 };
 
-if (cargo < 10000 && fuel >= 10000) {
+if (cargoLevel < 10000 && fuelLevel >= 10000) {
 faultyItems.style.visibility = "visible";
-h2.innerHTML = "Shuttle is Ready for Launch";
-h2.style.color = "#419F6A";
+launchStatus.innerHTML = "Shuttle is Ready for Launch";
+launchStatus.style.color = "#419F6A";
 fuelStatus.innerHTML = "Fuel level high enough for launch";
 cargoStatus.innerHTML = "Cargo mass low enough for launch";
 };
